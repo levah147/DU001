@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>Dashboard</title>
+
+    
+ <!-- Bootstrap CSS -->
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+ integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <!--link to icons8-->
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+</head>
+<body>
+    
+    <input type="checkbox" id="nav-toggle">
+    <div class="sidebar">
+        <div class="sidebar-brand">
+           <a href="{% url 'home' %}" style="color: aliceblue;"> <img src="https://dominionuniversity.edu.ng/wp-content/uploads/2019/08/New_Logo_DU_1-1.png">
+            <h2>OVS</h2></a>
+        </div>
+        <div class="sidebar-menu">
+            <div class="dash margin-bottom">
+                <a href="{% url 'dashboard' %}"><span class="las la-igloo"></span><span>OVS Dashboard</span></a>
+            </div>
+                
+            <ul class="margin-bottom">
+                <h4>REPORTS</h4>
+                <li class="active">
+                    <a href="{% url 'position' %}"><span class="las la-vote-yea"></span><span>Positions</span></a>
+                </li>
+                
+                <li>
+                    <a href="{% url 'result1' %}"><span class="las la-users"></span><span>Candidates</span></a>
+                </li>{% if request.user.is_staff and user.is_superuser %}
+                <li>
+                    <a href="{% url 'result' %}"><span class="las la-users"></span><span>Results</span></a>
+                </li>{% endif %}
+                <li>
+                  <!--<a href=""><span class="las la-users"></span><span>Comment</span></a>-->  
+                </li>
+            </ul>
+            <ul>
+                <h4>EXIT</h4>
+                <li>
+                    <a href="{% url 'logout' %}"><span class="las la-sign-out-alt"></span><span>Logout</span></a>
+                    <a href="{% url 'changepass' %}"><span class="las la-sign-out-alt"></span><span>change Password</span></a>
+                    
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div>
+            <header>
+                <h2>
+                    <label for="nav-toggle">
+                        <span class="las la-bars"></span>
+                    </label>
+                    Dashboard
+                </h2>
+
+                <!--
+                <div class="search-wrapper">
+                    <span class="las la-search"></span>
+                    <input type="search" placeholder="Search here" />
+                </div>
+                -->
+
+                <div class="user-wrapper">
+                    <div class="avatar">
+                        <img src="{{ user.profile.image.url }}" width="40px" height="40px" alt="">
+                    </div>
+                    <ul>
+                        <h3><a href="{% url 'profile' %}">Profile</a></h3>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                </div>
+            </header>
+
+            <main>
+    
+      
+        
+
+
+{% block content %}
+{% endblock %}
+
+
+
+
+
+
+                <div><br><br><br></div>
+                
+   
+                {% include 'card.html' %}
+                
+            </main>
+
+            
+            <footer class="footer">
+                    <small>Copyright &copy; 2023</small>
+                    <a href="">Levah</a>
+            </footer>
+        </div>
+    </div>
+
+    
+    
+
+</body>
+</html>

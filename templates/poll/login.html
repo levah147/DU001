@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+    <div class="jumbotron">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-danger" role="alert">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+
+
+                    
+                <!--Topside-->
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-md-2"></div>
+      <div class="col-md-8">
+          <div class="card">
+            
+              <div class="card-header text-bg-primary mb-3"   >
+                Login
+              </div>
+              <div class="card-body">
+                
+
+
+                <form action="." method="POST">
+                  <img class="img-fluid" src="https://dominionuniversity.edu.ng/wp-content/uploads/2019/08/New_Logo_DU_1-1.png" alt="Card image cap">
+          
+                  <h1></h1>
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <label for="id_username">Username:</label>
+                    <input type="text" name="username" class="form-control" id="id_username" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="id_password">Password:</label>
+                    <input type="password" name="password" class="form-control" id="id_password" required>
+                  </div>
+          
+                  <input type="submit" class="btn btn-primary btn-sm" value="Login">
+                </form>
+              </div>
+            </div>
+
+              </div>
+          </div>
+      </div>
+      <br><br><br>
+
+
+      
+      
+    {% include 'contact/footer.html' %}
+{% endblock %}

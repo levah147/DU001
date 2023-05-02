@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<div class="col-lg-8 mx-auto">
+    <h2>Fast, Secured and Accessible Voting System
+
+      </h2>
+      <p>Let’s make voting and elections easy for you. This is designed to ensure a secured voting session.</p>
+  </div>
+
+
+
+
+  <style>
+    /* styling of the home section*/
+#home{
+    background-image: linear-gradient(rgba(9, 5, 54, 0.3), rgba(5, 4, 46, 0.7)), url(https://www.yeselections.com/hubfs/online%20voting-1.jpg);
+    width: 100%;
+    height: calc(100vh - 4rem);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sub-home{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: inherit;
+}
+
+#home .sub-home h2{
+    color: #fff;
+    font-size: 2rem;
+    letter-spacing: 1px;
+}
+
+#home .sub-home p{
+    color: #fff;
+    font-size: 0.9rem;
+    line-height: 25px;
+}
+
+#home .sub-home .btn-special{
+    margin-top: 1.5rem;
+    padding: 0.9rem 5rem;
+    color: #fff;
+    border-radius: 2rem;
+    border: 2px solid var(--color-danger);
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 300ms ease;
+}
+
+#home .sub-home .btn-special:hover{
+    background-color: var(--color-danger);
+}
+
+
+/* styling of the other pages */
+#other_pages-home{
+    background-image: linear-gradient(rgba(9, 5, 54, 0.3), rgba(5, 4, 46, 0.7)), url();
+    width: 100%;
+    height: 30rem;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.other_pages-sub-home{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: inherit;
+}
+
+#other_pages-home .other_pages-sub-home h2{
+    color: #fff;
+    font-size: 2rem;
+    letter-spacing: 1px;
+}
+
+#other_pages-home .other_pages-sub-home p{
+    color: #fff;
+    font-size: 0.9rem;
+    line-height: 25px;
+}
+
+
+
+  </style>
+
+   <!--welcome section-->
+   <section id="home">
+    <div class="sub-home max-width">
+        <h2>Welcome to Online Voting System</h2>
+        <p>Let’s make voting and elections easy for you. This is designed to ensure a secured voting session.</p>
+        <a href="{% url 'login'%}" class="btn btn-primary btn-lg">Get Started</a>
+    </div>
+    
+</section>
+<!--welcome section ends here-->
+
+
+
+
+{% include 'contact/main.html' %} 
+
+    
+   
+
+  {% include 'contact/sfeatures.html' %}  
+ 
+  {% include 'contact/footer.html' %}
+
+{% endblock content %}
