@@ -122,7 +122,7 @@ def changePasswordView(request):
 from django.shortcuts import render, redirect
 from .forms import  UserUpdateForm, ProfileUpdateForm
 
-
+@login_required
 # Create your views here.
 def profile(request):
     context = {
@@ -130,7 +130,7 @@ def profile(request):
     }
     return render(request, 'poll/profile.html', context)
 
-
+@login_required
 def editProfileView(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
