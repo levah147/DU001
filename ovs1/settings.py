@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 
 import os
+import cloudinary_storage
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -50,7 +51,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'poll',
     "crispy_forms", # new
-    "crispy_bootstrap4", 
+    "crispy_bootstrap4",
+    'cloudinary',
+    'cloudinary_storage', 
 ]
 
 
@@ -156,8 +159,18 @@ STATIC_ROOT = os.path.join(BASE_DIR ,'staticfiles')
 
 LOGIN_URL = '/login/'
 
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_ROOT = os.path.join(BASE_DIR,"media")
 MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dhbirdd1n',
+    'API_KEY': '794713348559942',
+    'API_SECRET': 'ZPAJfwOCFIkBsMqir2VJzq-cyPI'
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
