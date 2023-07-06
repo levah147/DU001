@@ -39,8 +39,7 @@ class Candidate(models.Model):
 
 class ControlVote(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    position = models.ForeignKey(Position, on_delete=models.CASCADE)
     status = models.BooleanField(default=False)
 
     def __str__(self):
-        return "{} - {} - {}".format(self.user, self.position, self.status)
+        return "{} - {}".format(self.user, self.status)

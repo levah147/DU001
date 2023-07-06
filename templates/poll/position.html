@@ -4,7 +4,13 @@
 
 {% block content %}
 
-
+{% if messages %}
+{% for message in messages %}
+  <div class="alert alert-danger" role="alert">
+    {{ message }}
+  </div>
+{% endfor %}
+{% endif %}
 <!--Topside-->
 <div class="container">
   <div class="row mt-4">
@@ -15,31 +21,31 @@
               </div>
           </div>
       </div>
-      <div class="col-md-10">
-          <div class="card">
-              <div class="card-header bg-info text-white">
-                <h2>Available Position For Vote</h2>
-              </div>
-              <div class="card-body">
-                  <div class="row">
-                    {% for i in obj %}
-                      <div class="col-md-4">
-                          
-                            <a href="{% url 'candidate' i.id %}">
-                              <div class="card my-card shadow text-center p-3 btn-outline-primary">
-                                  <h4 style="color: rgb(99, 79, 70); ">{{i.title}} <i class="fas fa-users"></i></h4>
-                                
-                              </div>
-                          </a>
-                      </div>
-                      {% empty %}
-                      <p>No Positions Available</p>
-                      {% endfor %}
-                     
-                  </div>
-              </div>
+      <form method="post" action="{% url 'vote' %}" class="col-md-10">
+        {% csrf_token %}
+        {% for post in positions %}
+        <div class="card mt-4">
+          <div class="card-header bg-info text-white">
+            <h2>{{ post.title }}</h2>
           </div>
+          <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                  {% for cand in candidates %}
+                  {% if cand.position.title == post.title %}
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="id_{{cand.id}}" name="{{ cand.position}}" value="{{cand.id}}" class="custom-control-input" required>
+                    <label class="custom-control-label" for="id_{{cand.id}}">{{cand.name}} <a href="{% url 'detail' cand.id %}">Detail</a></label>
+                  </div>
+                  {% endif %}
+                  {% endfor %}
+                </div>
+            </div>
+        </div>
       </div>
+        {% endfor %}
+        <br><input type="submit" class="btn btn-outline-success btn-lg" value="VOTE">
+    </form>
   </div>
 </div>
 <!--End Topside-->

@@ -64,13 +64,78 @@ def news(request):
 
 @login_required
 def positionView(request):
-    obj = Position.objects.all()
-    return render(request, "poll/position.html", {'obj':obj})
+    positions = Position.objects.all()
+    candidates = Candidate.objects.all()
+    return render(request, "poll/position.html", {'positions':positions, 'candidates': candidates})
+
+
+@login_required
+def vote(request):
+    if request.method == "POST":   
+
+        temp = ControlVote.objects.get_or_create(user=request.user)[0]
+
+
+        if not temp.status:
+            president = request.POST.get("President")
+            vice_president = request.POST.get("Vice president")
+            fin_sec = request.POST.get("Fin sec")
+            gen_sec = request.POST.get("Gen sec")
+            social_director = request.POST.get("Social director")
+            sports_director = request.POST.get("Sports director")
+            ass_gen_sec = request.POST.get("Assistant general secretary")
+            pro = request.POST.get("PRO")
+            software_director = request.POST.get("Software director")
+
+            president_cand = Candidate.objects.get(id=president)
+            president_cand.total_vote += 1
+            president_cand.save()
+
+            vice_president_cand = Candidate.objects.get(id=vice_president)
+            vice_president_cand.total_vote += 1
+            vice_president_cand.save()
+
+            fin_sec_cand = Candidate.objects.get(id=fin_sec)
+            fin_sec_cand.total_vote += 1
+            fin_sec_cand.save()
+
+            gen_sec_cand = Candidate.objects.get(id=gen_sec)
+            gen_sec_cand.total_vote += 1
+            gen_sec_cand.save()
+
+            social_director_cand = Candidate.objects.get(id=social_director)
+            social_director_cand.total_vote += 1
+            social_director_cand.save()
+
+            sports_director_cand = Candidate.objects.get(id=sports_director)
+            sports_director_cand.total_vote += 1
+            sports_director_cand.save()
+
+            ass_gen_sec_cand = Candidate.objects.get(id=ass_gen_sec)
+            ass_gen_sec_cand.total_vote += 1
+            ass_gen_sec_cand.save()
+
+            pro_cand = Candidate.objects.get(id=pro)
+            pro_cand.total_vote += 1
+            pro_cand.save()
+
+            software_director_cand = Candidate.objects.get(id=software_director)
+            software_director_cand.total_vote += 1
+            software_director_cand.save()
+
+            temp.status = True
+            temp.save()
+
+            return HttpResponseRedirect('/position/')
+        else:
+            messages.success(request, 'you have already voted.')
+            return HttpResponseRedirect('/position/')
+        
 
 @login_required
 def candidateView(request, pos):
     obj = get_object_or_404(Position, pk = pos)
-    if request.method == "POST":
+    if request.method == "POST":   
 
         temp = ControlVote.objects.get_or_create(user=request.user, position=obj)[0]
 

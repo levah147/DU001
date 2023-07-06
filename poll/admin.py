@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Candidate, Position, Profile
+from .models import Candidate, Position, Profile, ControlVote
 
 @admin.register(Position)
 class PositionAdmin(admin.ModelAdmin):
@@ -15,3 +15,5 @@ class CandidateAdmin(admin.ModelAdmin):
     readonly_fields = ('total_vote',)
 
 admin.site.register(Profile)
+admin.site.register(ControlVote)
+
