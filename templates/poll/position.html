@@ -44,7 +44,14 @@
         </div>
       </div>
         {% endfor %}
+
+        {% if request.user.is_staff and user.is_superuser %}
+        <br><input type="submit" class="nav-link disabled" value="VOTE">
+
+        {% else %}
         <br><input type="submit" class="btn btn-outline-success btn-lg" value="VOTE">
+        {% endif %}
+       
     </form>
   </div>
 </div>
