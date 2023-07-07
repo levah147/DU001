@@ -13,3 +13,14 @@ class Comment(models.Model):
     def __str__(self):
         return self.name
     
+from django.utils import timezone
+
+class message(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    comment = models.TextField()
+    created_at = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.name
+    
