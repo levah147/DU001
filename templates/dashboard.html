@@ -31,9 +31,7 @@
                     <a href="{% url 'position' %}"><span class="las la-vote-yea"></span><span>Positions</span></a>
                 </li>
                 
-                <li>
-                    <a href="{% url 'result1' %}"><span class="las la-users"></span><span>Candidates</span></a>
-                </li>{% if request.user.is_staff and user.is_superuser %}
+               {% if request.user.is_staff and user.is_superuser %}
                 <li>
                     <a href="{% url 'result' %}"><span class="las la-users"></span><span>Results</span></a>
                 </li>{% endif %}

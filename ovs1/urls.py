@@ -5,7 +5,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('nacos/', admin.site.urls),
+    path('nacos/', admin.site.urls, name='nater'),
     path('', include('contact.urls')),
     path('register/', views.registrationView, name='registration'),
     path('login/', views.loginView, name='login'),
